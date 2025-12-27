@@ -155,7 +155,7 @@ def train_one_epoch(
     return global_step
 
 
-def test_epoch(epoch, test_dataloader, model, criterion):
+def test_epoch(epoch, test_dataloader, model, criterion, global_step):
     model.eval()
     device = next(model.parameters()).device
 
@@ -197,7 +197,7 @@ def test_epoch(epoch, test_dataloader, model, criterion):
             "test/z_bpp": z_bpp.avg,
             "epoch": epoch,
         },
-        step=epoch,
+        step=global_step,
     )
 
     return loss.avg
@@ -382,7 +382,7 @@ def main(argv):
             args.clip_max_norm,
         )
 
-        loss = test_epoch(epoch, test_dataloader, net, criterion)
+        loss = test_epoch(epoch, test_dataloader, net, criterion, global_step)
 
         is_best = loss < best_loss
         best_loss = min(loss, best_loss)
