@@ -230,6 +230,11 @@ def main():
     print("HPCM Multi-Reference Phase 1 - Test Suite")
     print("="*60 + "\n")
     
+    if not torch.cuda.is_available():
+        print("⚠️  CUDA not available. Tests require GPU.")
+        print("Please run on a machine with CUDA support.")
+        return 1
+    
     try:
         test_basic_forward()
         test_memory_bank()

@@ -16,5 +16,13 @@ scipy = "*"
 
 [dev-packages]
 
+[scripts]
+test-phase1 = "python examples/test_phase1.py"
+test-phase2 = "python examples/test_phase2.py"
+test-phase3 = "python examples/test_phase3.py"
+test-all = "bash -c 'python examples/test_phase1.py && python examples/test_phase2.py && python examples/test_phase3.py'"
+quick-test = "python examples/quick_test_all_phases.py"
+quick-start = "python examples/quick_start_phase1.py"
+
 [requires]
 python_version = "3.10"
